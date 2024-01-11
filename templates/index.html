@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>parse to roman</title>
+    
+</head>
+<body>
+    <form class="grid" action="/result" method="POST">
+        <center>
+            {% if number %}
+                <h3 style="color : blue"> {{number}} </h3>
+            {% endif %}
+        </center>
+        
+        
+        <center>
+
+        
+        <label for="number">Enter a number between 1 and 3999</label>
+        <input type="text" placeholder="" name="number" id="number">
+        </center>
+        <center><input type="submit" class="btn"></center>
+        <code class="python" src="../app.py"></code>
+    </form>
+</body>
+</html>
