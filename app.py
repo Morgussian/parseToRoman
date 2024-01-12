@@ -1,5 +1,7 @@
 # to explain
 from flask import Flask, render_template, request
+from waitress import serve
+
 # to explain
 app = Flask(__name__)
 # to explain
@@ -79,5 +81,5 @@ def parse_to_roman(number):
 #     print(sourcefile.read())
 #end of the html generation?
 if __name__ == '__main__':
-    app.run(host= "0.0.0.0", port=5000)
-
+    serve(app, host= "0.0.0.0", port=5000, threads=2)
+    #used to be app.run instead of "serve"
