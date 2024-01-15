@@ -1,6 +1,9 @@
 body {
     background:black
 }
+h3{
+    font-size: xx-large;
+}
 p, label{
     color: white
 }
@@ -11,7 +14,7 @@ section{
 code{
     border-color: black;
 }
-.pln{
+.pln, h3{
     color:lemonchiffon;
 }
 .kwd{

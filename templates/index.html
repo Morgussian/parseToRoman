@@ -9,7 +9,8 @@
     <!-- Ca marche pas: -->
     <!-- <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script> -->
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    <link rel="stylesheet" href="./style.css">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
 </head>
 <body>
     <form class="grid" action="/result" method="POST">
@@ -23,7 +24,7 @@
         <br>
         <center>
             {% if number %}
-                <h3 style="color : blue"> {{number}} </h3>
+                <h3> {{number}} </h3>
             {% endif %}
         </center>
         
