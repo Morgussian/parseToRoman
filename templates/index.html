@@ -4,25 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>parse to roman</title>
+    
     <link rel="icon" href="./parse.jpg">
+    <!-- Ca marche pas: -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <form class="grid" action="/result" method="POST">
+        <br><br>
+        <center>
+            <label for="number">Enter a number between 1 and 3999</label>
+            <input type="text" placeholder="" name="number" id="number">
+        </center>
+        <br>
+        <center><input type="submit" class="btn"></center>
+        <br>
         <center>
             {% if number %}
                 <h3 style="color : blue"> {{number}} </h3>
             {% endif %}
         </center>
         
-        
-        <center>
-
-        
-        <label for="number">Enter a number between 1 and 3999</label>
-        <input type="text" placeholder="" name="number" id="number">
-        </center>
-        <center><input type="submit" class="btn"></center>
-        <code class="python" src="../app.py"></code>
     </form>
+    <section class="code">
+        <code>
+            <pre class="prettyprint">
+            def parse_to_roman(number):
+                # out of range cases, number has to be an integer
+                is_letter_present = number.isdigit()
+                if(is_letter_present == False): return "Please enter digits only."
+                
+                if(int(number) == 0): return ("Zero has not been discovered yet")
+                if (int(number) > 3999): return ("out of Roman range...")
+
+                # used symbols as lists for units, tenths, hundreds and thousands
+                lists_of_symbols = [['I','V','X'],['X','L','C'],['C','D','M'],['M','M','M']]
+
+                # applied number has to be reversed to start with units in all cases
+                reversed_number_str = number[::-1]
+                
+                # applied number has to be set as a list of integers
+                reversed_number_str_list = [*reversed_number_str]
+                reversed_number_list = list(map(int, reversed_number_str_list))
+                
+                # list to fill with roman symbols
+                list_to_join_and_reverse = []
+
+                # when a single symbol has to be repeated like II or XXX
+                def several_identical_symbols(symbol, repeats):
+                    several_list = []
+                    while (repeats > 0):
+                        several_list.append(symbol)
+                        repeats -= 1
+                    return (''.join(several_list))
+                
+                # loop through applied number
+                # index must be set to loop through both number and symbols lists
+                i = 0
+                while i < len(reversed_number_list):
+                    # symbols applied for this loop
+                    symbols = lists_of_symbols[i]
+                    repeatable, fifth, sup = symbols[0], symbols[1], symbols[2]
+                    # the digit used fot this loop
+                    digit = reversed_number_list[i]
+
+                    if (digit == 9): list_to_join_and_reverse.append(repeatable + sup)
+                    if (digit == 4): list_to_join_and_reverse.append(repeatable + fifth)
+                    if (digit == 5): list_to_join_and_reverse.append(fifth)
+                    if (digit == 0): pass
+                    if (digit >= 1 and digit < 4): list_to_join_and_reverse.append(several_identical_symbols(repeatable, digit))
+                    if (digit >= 6 and digit < 9): list_to_join_and_reverse.append(fifth + several_identical_symbols(repeatable, digit - 5))
+
+                    # iteration of index
+                    i += 1
+                    
+                list_to_join = list_to_join_and_reverse[::-1]
+                list_to_display = ''.join(list_to_join)
+                print (list_to_display)
+                return list_to_display
+            </pre>
+        </code>
+    </section>
 </body>
 </html>

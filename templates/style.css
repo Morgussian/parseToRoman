@@ -1,0 +1,31 @@
+body {
+    background:black
+}
+p, label{
+    color: white
+}
+section{
+    padding-left: 10rem;
+    padding-top: 10rem;
+}
+code{
+    border-color: black;
+}
+.pln{
+    color:lemonchiffon;
+}
+.kwd{
+    color: blue;
+}
+.str{
+    color: brown;
+}
+.com{
+    color: darkgreen;
+}
+section.code{
+    padding-right: 160px;
+}
+.pun{
+    color: blueviolet;
+}
